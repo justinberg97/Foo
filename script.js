@@ -57,5 +57,26 @@ $.ajax(settingsGames).done(function (response) {
             });
          }
         
+    
+    function listScores() {    
+        var games = response.results
+        var scoreCard = $("#scoreCard")
+        games.forEach(game => { 
+            if (game.details.league === "NFL"){
+                console.log(game)
+                var gameUl = $("<ul>")
+                var gameLiAway = $("<li>")
+                var gameLiHome = $("<li>")
+                gameLiAway.text (game.scoreboard.score.away)
+                gameUl.append(gameLiAway);
+                console.log(awayScore)
+                gameLiHome.text (game.scoreboard.score.home)
+                gameUl.append(gameLiHome);
+                scoreCard.append(gameUl)
+            }
+            });
+        }
+
 listGames();
+listScores();
 });
