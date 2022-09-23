@@ -43,6 +43,19 @@ var settingsGames = {
 
 $.ajax(settingsGames).done(function (response) {
 	console.log(response);
+   
+   function listGames() {    
+        var games = response.results
+        var scoreCard = $("#scoreCard")
+        games.forEach(game => { 
+            if (game.details.league === "NFL"){
+                console.log(game)
+                var gameDiv = $("<div>")
+                gameDiv.text (game.summary)
+                scoreCard.append(gameDiv);
+            }
+            });
+         }
+        
+listGames();
 });
-
-

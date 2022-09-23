@@ -12,4 +12,5 @@ p {
 #gamecard {
     display: flex;
     justify-content: center; 
+    width: 1000px;
 }
