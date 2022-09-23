@@ -14,3 +14,17 @@ p {
     justify-content: center; 
     width: 1000px;
 }
+
+#text {
+    color: white;
+}
+
+/* #button { */
+    /* background-color: beige; */
+    /* padding: 12px 90px; */
+/* } */
+
+.button {
+background-color: brown;
+
+}
