@@ -111,4 +111,6 @@ $.ajax(settingsGames).done(function (response) {
     listGames(response)
     listScores(response)
     searchCity(venues[0])
+
+	
 });
