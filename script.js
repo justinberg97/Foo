@@ -76,7 +76,11 @@ $.ajax(settingsGames).done(function (response) {
             }
             });
         }
-
+        function saveScores() {
+            
+            }
+      
 listGames();
 listScores();
+saveScores();
 });
