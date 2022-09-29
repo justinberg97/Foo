@@ -42,7 +42,6 @@ function listScores(data) {
     });
 }
 
-
 function listWeather(data) {
     var weather = data.list
     var scoreCard = $("#scoreCard")
@@ -56,6 +55,7 @@ function listWeather(data) {
             scoreCard.append(weatherUl);
     });
 }
+
 
 function saveScores(data) {
 
@@ -136,4 +136,5 @@ $.ajax(settingsGames).done(function (response) {
     listGames(response)
     listScores(response)
     searchCity(venues[0])
+    //listWeather()
 });
