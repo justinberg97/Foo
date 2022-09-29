@@ -14,10 +14,19 @@ function listVenue(data) {
 function listGames(data) {
     var games = data.results
     var scoreCard = $("#scoreCard")
-    games.forEach(game => {
+    games.forEach((game, i) => {
+        console.log(game)
+        console.log(game, i)
         if (game.details.league === "NHL") {
             var gameDiv = $("<div>")
-            gameDiv.text(game.summary)
+            var gameTitle = $("<div>")
+            var gameWeather = $("<div>")
+            gameWeather[0].id = i
+            gameTitle.text(game.summary)
+            searchCity(game.venue.city, i)
+            gameDiv.append(gameTitle);
+            gameDiv.append(gameWeather)
+            console.log(gameWeather)
             scoreCard.append(gameDiv);
         }
     });
@@ -42,17 +51,19 @@ function listScores(data) {
     });
 }
 
-function listWeather(data) {
+function listWeather(data, i) {
     var weather = data.list
+    console.log(weather)
     var scoreCard = $("#scoreCard")
     weather.forEach(venue => {
-            var weatherUl = $("<ul>")
+            // var weatherUl = $("<ul>")
             var weatherLi = $("<li>")
             var temp = venue.main.temp
-            var tempF = Math.floor(1.8*(temp-273) + 32)
-            weatherLi.text(tempF)
-            weatherUl.append(weatherLi);
-            scoreCard.append(weatherUl);
+            // var tempF = Math.floor(1.8*(temp-273) + 32)
+            weatherLi.text(Math.floor(temp))
+            // weatherUl.append(weatherLi);
+            $("#" + i).text(Math.floor(temp));
+            console.log($("#" + i))
     });
 }
 
@@ -78,26 +89,27 @@ $.ajax(settingsScores).done(function (response) {
 });
 
 
-function searchCity(city) {
+function searchCity(city, i) {
 
     var request = $.ajax({
         url: 'http://api.openweathermap.org/geo/1.0/direct?q=' + city + '&limit=1&appid=29629d07a798cd81165a6be24018b444',
         method: "GET",
         success: function (response) {
-            getCityWeather(response[0].lat, response[0].lon)
-            return response
+            getCityWeather(response[0].lat, response[0].lon, i)
+            return 
         }
     });
 }
 
-function getCityWeather(lat, lon) {
+function getCityWeather(lat, lon, i) {
     console.log(lat, lon)
     var request = $.ajax({
-        url: `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units={imperial}&appid=29629d07a798cd81165a6be24018b444`,
+        url: `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&cnt=7&appid=29629d07a798cd81165a6be24018b444`,
         method: "GET",
         success: function (response) {
             console.log(response.list)
-            listWeather(response)
+            listWeather(response, i)
+            return response.list
         
         }
     })
@@ -135,6 +147,10 @@ $.ajax(settingsGames).done(function (response) {
     console.log(venues)
     listGames(response)
     listScores(response)
-    searchCity(venues[0])
+    // for (let index = 0; index < venues.length; index++) {
+    //     searchCity(venues[index])
+        
+        
+    // }
     //listWeather()
 });
