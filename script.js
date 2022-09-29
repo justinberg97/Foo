@@ -45,7 +45,7 @@ function listScores(data) {
 // function listWeather(data) {
 //     var weather = data.weather
 //     var scoreCard = $("#scoreCard")
-//     weather.forEach(game => {
+//     weather.forEach(venue => {
 //         if () {
 //             var weatherUl = $("<ul>")
 //             var weatherLi = $("<li>")
@@ -129,8 +129,8 @@ $.ajax(settingsGames).done(function (response) {
 
     var venues = listVenue(response)
     console.log(venues)
-    //listWeather()
     listGames(response)
     listScores(response)
     searchCity(venues[0])
+    //listWeather()
 });
