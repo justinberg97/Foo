@@ -27,10 +27,11 @@ function listScores(data) {
     var games = data.results
     var scoreCard = $("#scoreCard")
     games.forEach(game => {
-        if (game.details.league === "NHL") {
+        if (game.details.league === "NHL" && game.scoreboard) {
             var gameUl = $("<ul>")
             var gameLiAway = $("<li>")
             var gameLiHome = $("<li>")
+            console.log(game)
             gameLiAway.text(game.scoreboard.score.away)
             gameUl.append(gameLiAway);
             console.log(awayScore)
@@ -41,20 +42,20 @@ function listScores(data) {
     });
 }
 
+function listWeather(data) {
+    var weather = data.list
+    var scoreCard = $("#scoreCard")
+    weather.forEach(venue => {
+            var weatherUl = $("<ul>")
+            var weatherLi = $("<li>")
+            var temp = venue.main.temp
+            var tempF = Math.floor(1.8*(temp-273) + 32)
+            weatherLi.text(tempF)
+            weatherUl.append(weatherLi);
+            scoreCard.append(weatherUl);
+    });
+}
 
-// function listWeather(data) {
-//     var weather = data.weather
-//     var scoreCard = $("#scoreCard")
-//     weather.forEach(venue => {
-//         if () {
-//             var weatherUl = $("<ul>")
-//             var weatherLi = $("<li>")
-//             weatherLi.text(weather[0].main)
-//             weatherUl.append(weatherLi);
-//             scoreCard.append(weatherUl);
-//         }
-//     });
-// }
 
 function saveScores(data) {
 
@@ -92,13 +93,16 @@ function searchCity(city) {
 function getCityWeather(lat, lon) {
     console.log(lat, lon)
     var request = $.ajax({
-        url: `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=29629d07a798cd81165a6be24018b444`,
+        url: `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units={imperial}&appid=29629d07a798cd81165a6be24018b444`,
         method: "GET",
         success: function (response) {
-            console.log(response)
+            console.log(response.list)
+            listWeather(response)
+        
         }
     })
 }
+
 
 
 var request = $.ajax({
