@@ -1,6 +1,16 @@
+body {
+    background-image: url(./Assets/Image\ from\ iOS.jpg)
+}
+
 h1 {
     display: flex;
     justify-content: center; 
+    color: white;
+}
+
+#le-card {
+    background: transparent;
+    color: white;
 }
 
 p {

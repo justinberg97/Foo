@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="style.css"/>
-    <title>NFL Score Game Test 2</title>
+    <title>NFL Predictions</title>
 </head>
 <body>
     <div class="col s12 m7">
         <h1 class="header">NFL Prediction Center</h1>
-            <div class="card horizontal">
+            <div id = "le-card" class="card horizontal">
             <div class="card-stacked">
                 <div class="card-content">
                 <p>Keep up with all of today's games and scores live! Make your picks and track your record.</p>
@@ -21,22 +21,19 @@
         </div>
         <div id="gamecard" class="row">
             <div class="col">
-              <div class="card indigo darken-4">
+              <div class="card red darken-4">
                 <ul id="scoreCard" class="card-content white-text">
                     <li id="homeScore"></li>
                     <li id="awayScore"></li>
                 </ul>
                 <div id="scoreCard" class="card-content white-text">
-                    <textarea id="text" class = "col-md-10 description" placeholder="predict the score"></textarea>
-                    <button type="button">Enter</button>
-                    <!-- <button id="button" class="btn saveBtn col-md-1"><i class="fas fa-save"></i></button> -->
-                  </div>
+                </div>
               </div>
             </div>
           </div>
           <div id="scorecard" class="row">
             <div class="col">
-              <div class="card indigo darken-4">
+              <div class="card red darken-4">
                 <ul id="scoreCard" class="card-content white-text">
                 </ul>
                 <div id="scoreCard" class="card-content white-text">

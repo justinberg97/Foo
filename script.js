@@ -16,7 +16,6 @@ function listGames(data) {
     var scoreCard = $("#scoreCard")
     games.forEach(game => {
         if (game.details.league === "NHL") {
-            console.log(game)
             var gameDiv = $("<div>")
             gameDiv.text(game.summary)
             scoreCard.append(gameDiv);
@@ -29,7 +28,6 @@ function listScores(data) {
     var scoreCard = $("#scoreCard")
     games.forEach(game => {
         if (game.details.league === "NHL") {
-            console.log(game)
             var gameUl = $("<ul>")
             var gameLiAway = $("<li>")
             var gameLiHome = $("<li>")
@@ -42,6 +40,21 @@ function listScores(data) {
         }
     });
 }
+
+
+// function listWeather(data) {
+//     var weather = data.weather
+//     var scoreCard = $("#scoreCard")
+//     weather.forEach(game => {
+//         if () {
+//             var weatherUl = $("<ul>")
+//             var weatherLi = $("<li>")
+//             weatherLi.text(weather[0].main)
+//             weatherUl.append(weatherLi);
+//             scoreCard.append(weatherUl);
+//         }
+//     });
+// }
 
 function saveScores(data) {
 
@@ -65,26 +78,34 @@ $.ajax(settingsScores).done(function (response) {
 
 
 function searchCity(city) {
-    //fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + venue +'&limit={limit}&appid=29629d07a798cd81165a6be24018b444')
+
     var request = $.ajax({
-        url: 'http://api.openweathermap.org/geo/1.0/direct?q=' + city +'&limit=1&appid=29629d07a798cd81165a6be24018b444',
+        url: 'http://api.openweathermap.org/geo/1.0/direct?q=' + city + '&limit=1&appid=29629d07a798cd81165a6be24018b444',
         method: "GET",
         success: function (response) {
-            // response from OpenWeatherMap
-            console.log(response);
+            getCityWeather(response[0].lat, response[0].lon)
+            return response
         }
     });
 }
 
+function getCityWeather(lat, lon) {
+    console.log(lat, lon)
+    var request = $.ajax({
+        url: `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=29629d07a798cd81165a6be24018b444`,
+        method: "GET",
+        success: function (response) {
+            console.log(response)
+        }
+    })
+}
 
-//fetch('https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid=29629d07a798cd81165a6be24018b444')
+
 var request = $.ajax({
     url: "http://api.openweathermap.org/data/2.5/weather",
     method: "GET",
     data: { id: '2172797', appid: '29629d07a798cd81165a6be24018b444' },
     success: function (response) {
-        // response from OpenWeatherMap
-        //var dataArray = JSON.parse(response); // create an array from JSON element
         console.log(response)
     }
 });
@@ -108,9 +129,8 @@ $.ajax(settingsGames).done(function (response) {
 
     var venues = listVenue(response)
     console.log(venues)
+    //listWeather()
     listGames(response)
     listScores(response)
     searchCity(venues[0])
-
-	
 });
