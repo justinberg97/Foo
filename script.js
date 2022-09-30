@@ -13,10 +13,10 @@ function listGames(data) {
   var games = data.results;
   var scoreCard = $("#scoreCard");
   games.forEach((game, i) => {
-    console.log(game);
-    console.log(game, i);
     if (game.details.league === "NHL") {
       var gameDiv = $("<div>");
+      gameDiv.addClass("card red darken-4")
+      gameDiv.css({ "margin": "8px", "padding": "4px",})
       var gameTitle = $("<div>");
       var gameWeather = $("<div>");
       gameWeather[0].id = i;
@@ -27,7 +27,7 @@ function listGames(data) {
       gameDiv.append(game.scoreboard.score.away);
       gameDiv.append("-")
       gameDiv.append(game.scoreboard.score.home);
-      gameDiv.append("Today's Weather")
+      gameDiv.append("<br> Today's Weather")
       gameDiv.append(gameWeather)
       console.log(gameWeather);
 
@@ -43,12 +43,8 @@ function listScores(data) {
       var gameUl = $("<ul>");
       var gameLiAway = $("<li>");
       var gameLiHome = $("<li>");
-      console.log(game);
       gameLiAway.text(game.scoreboard.score.away);
-      gameUl.append(gameLiAway);
-      console.log(awayScore);
       gameLiHome.text(game.scoreboard.score.home);
-      gameUl.append(gameLiHome);
       scoreCard.append(gameUl);
     }
   });
@@ -59,15 +55,14 @@ function listWeather(data, i) {
   console.log(weather);
   var scoreCard = $("#scoreCard");
   weather.forEach((venue) => {
-    // var weatherLi = $("<li>");
     var temp = venue.main.temp;
-    // weatherLi.text(Math.floor(temp));
-    $("#" + i).text(Math.floor(temp) + "°");
-    console.log($("#" + i));
+    var weatherMain = venue.weather[0].main;
+    $("#" + i).text(Math.floor(temp) + "° " + weatherMain);
+    console.log(weatherMain);
   });
 }
 
-function saveScores(data) {}
+function saveScores(data) { }
 
 var settingsScores = {
   async: true,
@@ -133,15 +128,9 @@ var settingsGames = {
 };
 
 $.ajax(settingsGames).done(function (response) {
-  console.log(response);
 
   var venues = listVenue(response);
   console.log(venues);
   listGames(response);
   listScores(response);
-  // for (let index = 0; index < venues.length; index++) {
-  //     searchCity(venues[index])
-
-  // }
-  //listWeather()
 });
