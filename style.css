@@ -19,16 +19,20 @@ p {
     font-size: 20px;
 }
 
-#gamecard {
+#gameCard {
     display: flex;
     justify-content: center; 
     width: 1000px;
 }
 
-#scorecard {
+#scoreCard {
+    margin-top: auto;
+    margin-bottom: 50px;
     display: flex;
     justify-content: center;
     width: 1000px;
+   
+
 }
 
 #text {
