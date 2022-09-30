@@ -23,12 +23,13 @@ function listGames(data) {
       gameTitle.text(game.summary);
       searchCity(game.venue.city, i);
       gameDiv.append(gameTitle);
-      gameDiv.append(gameWeather);
-      console.log(gameWeather);
-    //   games.append(gameDiv);
       scoreCard.append(gameDiv);
       gameDiv.append(game.scoreboard.score.away);
+      gameDiv.append("-")
       gameDiv.append(game.scoreboard.score.home);
+      gameDiv.append("Today's Weather")
+      gameDiv.append(gameWeather)
+      console.log(gameWeather);
 
     }
   });
@@ -58,10 +59,10 @@ function listWeather(data, i) {
   console.log(weather);
   var scoreCard = $("#scoreCard");
   weather.forEach((venue) => {
-    var weatherLi = $("<li>");
+    // var weatherLi = $("<li>");
     var temp = venue.main.temp;
-    weatherLi.text(Math.floor(temp));
-    $("#" + i).text(Math.floor(temp));
+    // weatherLi.text(Math.floor(temp));
+    $("#" + i).text(Math.floor(temp) + "°");
     console.log($("#" + i));
   });
 }
