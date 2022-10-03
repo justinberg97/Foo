@@ -90,7 +90,7 @@ $.ajax(settingsScores).done(function (response) {
 function searchCity(city, i) {
   var request = $.ajax({
     url:
-      "http://api.openweathermap.org/geo/1.0/direct?q=" +
+      "https://api.openweathermap.org/geo/1.0/direct?q=" +
       city +
       "&limit=1&appid=29629d07a798cd81165a6be24018b444",
     method: "GET",
@@ -174,7 +174,7 @@ function getCityWeather(lat, lon, i) {
 }
 
 var request = $.ajax({
-  url: "http://api.openweathermap.org/data/2.5/weather",
+  url: "https://api.openweathermap.org/data/2.5/weather",
   method: "GET",
   data: { id: "2172797", appid: "29629d07a798cd81165a6be24018b444" },
   success: function (response) {
