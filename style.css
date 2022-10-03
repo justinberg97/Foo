@@ -1,5 +1,5 @@
 body {
-    background-image: url(./Assets/Image\ from\ iOS.jpg)
+    background-image: url(./Assets/2101282.jpg)
 }
 
 h1 {
@@ -39,12 +39,29 @@ p {
     color: white;
 }
 
-/* #button { */
-    /* background-color: beige; */
-    /* padding: 12px 90px; */
-/* } */
 
 .button {
 background-color: brown;
 
+}
+
+#textBox {
+    margin-top: auto;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+   
+}
+
+#prediction {
+    color: white;
+}
+
+#reset {
+    color: black;
+}
+
+#record {
+    color: white;
 }

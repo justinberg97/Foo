@@ -1,64 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    />
-    <link rel="stylesheet" href="style.css" />
-    <title>NHL Predictions 3</title>
-  </head>
-  <body>
-    <div class="col s12 m7">
-      <h1 class="header">NHL Prediction Center</h1>
-      <div id="le-card" class="card horizontal">
-        <div class="card-stacked">
-          <div class="card-content">
-            <p>
-              Keep up with all of today's games and scores live! Make your picks
-              and track your record.
-            </p>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <title>NHL Predictions 3</title>
+</head>
+
+<body>
+  <div class="col s12 m7">
+    <h1 class="header">NHL Prediction Center</h1>
+    <div id="le-card" class="card horizontal">
+      <div class="card-stacked">
+        <div class="card-content">
+          <p>
+            Keep up with all of today's games and scores live! Make your picks
+            and track your record.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="gameCard" class="row">
+    <div class="col">
+      <div class="card N/A transparent">
+        <ul id="scoreCard" class="card-content white-text">
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div id="textBox" class="row">
+    <div class="col s12 m6">
+      <div class="card blue darken-4">
+        <div class="card-content white-text">
+          <span class="card-title">Predictions</span>
+          <div class="row">
+            <form class="col s12">
+              <div class="row">
+                <div class="input-field col s12">
+                  <textarea id="prediction" class="materialize-textarea"></textarea>
+                  <label for="textarea1">Enter Here</label>
+                  <div id="guesses"></div>
+                </div>
+              </div>
+            </form>
+            <a id="btn" class="waves-effect waves-light btn red darken-4">Submit</a>
+            <a id="clear" class="waves-effect waves-light btn red darken-4 color white">Clear</a>
           </div>
         </div>
       </div>
     </div>
-    <div id="gameCard" class="row">
-      <div class="col">
-        <div class="card red darken-4">
-          <ul id="scoreCard" class="card-content white-text">
-            <li id="homeScore"></li>
-            <li id="awayScore"></li>
-          </ul>
-          <div id="scoreCard" class="card-content white-text"></div>
-        </div>
-      </div>
-    </div>
-    <div id="scoreCard" class="row">
-      <div class="col">
-        <div class="card red darken-4">
-          <ul id="scoreCard" class="card-content white-text"></ul>
-          <div id="scoreCard" class="card-content white-text">
-            <textarea
-              id="text"
-              class="col-md-10 description"
-              placeholder="predict the score"
-            ></textarea>
-            <button type="button">Enter</button>
-            <!-- <button id="button" class="btn saveBtn col-md-1"><i class="fas fa-save"></i></button> -->
+
+    <div class="row">
+      <div class="col 4">
+        <div class="card blue darken-4">
+          <div class="card-content white-text">
+            <span class="counter">
+              <div class="row">
+                <p class="col 1">Record:</p>
+                <p class="col 1" id="correct"></p>
+                <p class="col 1"> - </p>
+                <p class="col 1" id="incorrect"></p>
+              </div>
+            </span>
+            <a id="correctBtn" class="waves-effect waves-light btn red darken-4">Correct</a>
+            <a id="incorrectBtn" class="waves-effect waves-light btn red darken-4">Incorrect</a><br>
+            <a id="reset" class="waves-effect waves-light btn white color black">Reset</a>
           </div>
         </div>
       </div>
     </div>
-    <script
-      src="https://code.jquery.com/jquery-3.6.1.min.js"
-      integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-    <script src="script.js"></script>
-  </body>
+
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
 </html>
