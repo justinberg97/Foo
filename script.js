@@ -1,3 +1,5 @@
+var gameChoices = document.getElementById("gameChoices")
+
 function listVenue(data) {
   var games = data.results;
   var venues = [];
@@ -11,9 +13,11 @@ function listVenue(data) {
 
 function listGames(data) {
   var games = data.results;
+  console.log(games)
   var scoreCard = $("#scoreCard");
   games.forEach((game, i) => {
     if (game.details.league === "NHL") {
+        console.log(game)
       var gameDiv = $("<div>");
       gameDiv.addClass("card blue darken-4")
       gameDiv.css({ "margin": "8px", "padding": "4px", })
@@ -24,9 +28,12 @@ function listGames(data) {
       searchCity(game.venue.city, i);
       gameDiv.append(gameTitle);
       scoreCard.append(gameDiv);
+      if (game.scoreboard) {
       gameDiv.append(game.scoreboard.score.away);
       gameDiv.append("-")
       gameDiv.append(game.scoreboard.score.home);
+      }
+
       gameDiv.append("<br> Today's Weather")
       gameDiv.append(gameWeather)
       console.log(gameWeather);
@@ -152,9 +159,6 @@ $("#clear").on("click", function () {
   $("#guesses").text("")
 })
 
-
-
-
 function getCityWeather(lat, lon, i) {
   console.log(lat, lon);
   var request = $.ajax({
@@ -194,5 +198,5 @@ $.ajax(settingsGames).done(function (response) {
   console.log(venues);
   listGames(response);
   listScores(response);
-  listTeams();
+//   listTeams();
 });
