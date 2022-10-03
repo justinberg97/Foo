@@ -60,6 +60,11 @@ background-color: brown;
 
 #reset {
     color: black;
+    position: relative;
+  top: 50%;
+  left: 30%;
+  margin-top: 5px;
+
 }
 
 #record {
