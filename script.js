@@ -15,8 +15,8 @@ function listGames(data) {
   games.forEach((game, i) => {
     if (game.details.league === "NHL") {
       var gameDiv = $("<div>");
-      gameDiv.addClass("card red darken-4")
-      gameDiv.css({ "margin": "8px", "padding": "4px",})
+      gameDiv.addClass("card blue darken-4")
+      gameDiv.css({ "margin": "8px", "padding": "4px", })
       var gameTitle = $("<div>");
       var gameWeather = $("<div>");
       gameWeather[0].id = i;
@@ -30,7 +30,6 @@ function listGames(data) {
       gameDiv.append("<br> Today's Weather")
       gameDiv.append(gameWeather)
       console.log(gameWeather);
-
     }
   });
 }
@@ -62,7 +61,7 @@ function listWeather(data, i) {
   });
 }
 
-function saveScores(data) { }
+
 
 var settingsScores = {
   async: true,
@@ -93,6 +92,68 @@ function searchCity(city, i) {
     },
   });
 }
+
+//Record Tally
+var correct = document.getElementById("correct");
+var incorrect = document.getElementById("incorrect");
+var reset = document.getElementById("reset");
+var counter = document.querySelector(".counter");
+var correctBtn = document.getElementById("correctBtn");
+var correctCount = 0
+var incorrectBtn = document.getElementById("incorrectBtn");
+var incorrectCount = 0
+
+
+correctBtn.addEventListener("click", function () {
+  var updatedCount = localStorage.getItem("correct")||0;
+  updatedCount++
+  localStorage.setItem("correct", updatedCount);
+  correct.textContent = updatedCount;
+});
+
+correct.textContent= localStorage.getItem("correct")
+
+incorrectBtn.addEventListener("click", function () {
+  var incorrectCount = localStorage.getItem("incorrect")||0;
+  incorrectCount++
+  localStorage.setItem("incorrect", incorrectCount);
+  incorrect.textContent = incorrectCount;
+});
+
+incorrect.textContent= localStorage.getItem("incorrect")
+
+reset.addEventListener("click", function(){
+  localStorage.removeItem("correct")
+  localStorage.removeItem("incorrect")
+  correct.textContent=0
+  incorrect.textContent=0
+})
+
+
+//LOCAL STORAGE
+function savePred() {
+  var prediction = document.getElementById("prediction").value;
+
+  var userPred = localStorage.setItem("prediction", prediction);
+
+  var userPred = localStorage.getItem("prediction", prediction);
+
+  var guesses = $("#guesses");
+  guesses.text(userPred);
+
+}
+
+$("#btn").on("click", savePred)
+
+$("#guesses").text(localStorage.getItem("prediction"))
+
+$("#clear").on("click", function () {
+  localStorage.removeItem("prediction");
+  $("#guesses").text("")
+})
+
+
+
 
 function getCityWeather(lat, lon, i) {
   console.log(lat, lon);
@@ -133,4 +194,5 @@ $.ajax(settingsGames).done(function (response) {
   console.log(venues);
   listGames(response);
   listScores(response);
+  listTeams();
 });
