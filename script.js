@@ -25,6 +25,7 @@ function listGames(data) {
       var gameWeather = $("<div>");
       gameWeather[0].id = i;
       gameTitle.text(game.summary);
+
       searchCity(game.venue.city, i);
       gameDiv.append(gameTitle);
       scoreCard.append(gameDiv);
